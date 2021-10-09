@@ -1,20 +1,21 @@
-public enum Elements
+public enum E_Elements
 {
-    water=1,
-    light=2,
-    wind=3,
-    fire=4,
-    shadow=5,
-    ground=6
+    Water=1,
+    Light=2,
+    Wind=3,
+    Fire=4,
+    Shadow=5,
+    Ground=6
 }
 
 /// <summary>
 /// chieu thuc duoc the hien duoi dang: tia, chum, bom,....
 /// </summary>
-public enum Category
+public enum E_Category
 {
-    ray=1,
-    wall=2,
-    cube=3
+    Ray=1,
+    Wall=2,
+    Cube=3,
+    Ball=4
 }
 
