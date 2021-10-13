@@ -7,7 +7,6 @@ public class BaseSkill
 {
     public BaseSkill nextSkill;
     protected BaseCharacter _user;
-    public int idSkill=1;
     public int idEffect=1;
 
     public BaseSkill(BaseCharacter user)

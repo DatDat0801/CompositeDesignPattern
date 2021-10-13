@@ -5,20 +5,23 @@ using UnityEngine;
 public class SkillFactory : Singleton<SkillFactory>
 {
     public List<E_Skill> skills;
+
+    #region  for Demo
     public BaseSkill baseSkill;
     public BaseCharacter basePlayer;
     public BaseCharacter baseEnemy;
     public bool doSkill;
+    #endregion
     void Update()
     {
         if (doSkill)
         {
-            baseSkill = GenSkill(skills, basePlayer);
+            baseSkill = GenTreeSkill(skills, basePlayer);
             baseSkill.Excute(baseEnemy);
             doSkill = false;
         }
     }
-    public BaseSkill GenSkill(List<E_Skill> lstSkill, BaseCharacter playerBase)
+    public BaseSkill GenTreeSkill(List<E_Skill> lstSkill, BaseCharacter playerBase)
     {
         BaseSkill bs = GetSkill(lstSkill[0], playerBase);
         for (int i = 1; i < lstSkill.Count; i++)
