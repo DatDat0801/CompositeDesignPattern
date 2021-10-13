@@ -1,3 +1,4 @@
+[System.Serializable]
 public class CharInfo
 {
     public int hp;

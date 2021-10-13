@@ -2,39 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillFactory : MonoBehaviour
+public class SkillFactory : Singleton<SkillFactory>
 {
-    public string inpSkillCode; // co dang: a,b,c|a,b,c (trong do: a = idElement, b= idEffect, c = idCategory)
-
-    List<SkillCode> HandleStringInput()
+    public List<E_Skill> skills;
+    public BaseSkill baseSkill;
+    public BaseCharacter basePlayer;
+    public BaseCharacter baseEnemy;
+    public bool doSkill;
+    void Update()
     {
-        List<SkillCode> lstSkillCode = new List<SkillCode>();
-        string[] input = inpSkillCode.Split('|'); // tach cac skill don trong chuoi
-        for (int i = 0; i < input.Length; i++)
+        if (doSkill)
         {
-            string[] s = input[0].Split(',');// tach cac ma cua chieu
-            int idEl, idEff, idCa;
-            int.TryParse(s[0], out idEl);
-            int.TryParse(s[1], out idEff);
-            int.TryParse(s[2], out idCa);
-            SkillCode skill = new SkillCode(idEl, idEff, idCa);
-            lstSkillCode.Add(skill);
+            baseSkill = GenSkill(skills, basePlayer);
+            baseSkill.Excute(baseEnemy);
+            doSkill = false;
         }
-        return lstSkillCode;
     }
-    
-}
-
-public class SkillCode
-{
-    public SkillCode(int idElement, int idEffect, int idCategory)
+    public BaseSkill GenSkill(List<E_Skill> lstSkill, BaseCharacter playerBase)
     {
-        this.idElement = idElement;
-        this.idEffect = idEffect;
-        this.idCategory = idCategory;
+        BaseSkill bs = GetSkill(lstSkill[0], playerBase);
+        for (int i = 1; i < lstSkill.Count; i++)
+        {
+            BaseSkill tmp = GetSkill(lstSkill[i], playerBase);
+            bs.Add(tmp);
+        }
+        return bs;
     }
 
-    public int idElement;
-    public int idEffect;
-    public int idCategory;
+
+    BaseSkill GetSkill(E_Skill e_Skill, BaseCharacter playerBase)
+    {
+        switch (e_Skill)
+        {
+            case E_Skill.fireBall:
+                return new FireBall(playerBase);
+            case E_Skill.lightBall:
+                return new LightBall(playerBase);
+            case E_Skill.shadowBall:
+                return new ShadowBall(playerBase);
+            case E_Skill.waterBall:
+                return new WaterBall(playerBase);
+            case E_Skill.windBall:
+                return new WindBall(playerBase);
+        }
+        return null;
+    }
 }

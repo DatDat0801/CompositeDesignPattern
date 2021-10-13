@@ -2,28 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseSkill 
+[System.Serializable]
+public class BaseSkill 
 {
-    protected E_Elements _element;
-    protected E_Category _category;
+    public BaseSkill nextSkill;
     protected BaseCharacter _user;
     public int idSkill=1;
     public int idEffect=1;
 
-    protected BaseSkill(E_Elements element, E_Category category,BaseCharacter user)
+    public BaseSkill(BaseCharacter user)
     {
-        _element = element;
-        _category = category;
         _user = user;
     }
-
-    public void SetUp(E_Elements element,E_Category category)
-    {
-        _element = element;
-        _category = category;
-    }
     
-    public virtual void Add(BaseSkill baseSkill){}
-    public  virtual  void Remove(BaseSkill baseSkill){}
-    public  virtual void Excute(BaseCharacter baseCharacter){}
+    public void Add(BaseSkill baseSkill)
+    {
+        if(nextSkill==null)
+        {
+            nextSkill =baseSkill;
+        }
+        else{
+            nextSkill.Add(baseSkill);
+        }
+    }
+    public  void Remove(BaseSkill baseSkill)
+    {
+        if(nextSkill!=null) nextSkill=null;
+    }
+    public  virtual void Excute(BaseCharacter baseEnemy){}
 }

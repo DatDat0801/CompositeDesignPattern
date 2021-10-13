@@ -19,3 +19,12 @@ public enum E_Category
     Ball=4
 }
 
+public enum E_Skill
+{
+    fireBall=0,
+    lightBall=1,
+    shadowBall=2,
+    waterBall=3,
+    windBall=4
+}
+
