@@ -16,6 +16,7 @@ public class FireBall : BaseSkill
         Ultilities.singleton.RunCoroutine(IE_Burn(baseEnemy, 3, 1, 2));// gay chay 3 lan, moi lan cach nhau 1s gay dmg=2
         Debug.Log("_FireBall: Gay bong cho muc tieu");
         nextSkill?.Excute(baseEnemy);
+        //
     }
 
     IEnumerator IE_Burn(BaseCharacter baseEnemy, int time, float delay, int dmg)

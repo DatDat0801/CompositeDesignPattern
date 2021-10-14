@@ -729,9 +729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0490f79902dd949813dbfb6f2e53fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills: 00000000010000000200000004000000
+  skills: 040000000000000004000000
   baseSkill:
-    idSkill: 0
     idEffect: 0
   basePlayer: {fileID: 740908836}
   baseEnemy: {fileID: 960610219}
